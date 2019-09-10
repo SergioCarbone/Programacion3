@@ -12,6 +12,7 @@ class Modificar{
             if($value != null){
                 if($value->dni == $dni){                    
                     Guardar::guardarArchivo($archivo, $nuevaPersona);
+                    echo "Se modifico correctamente";
                 }
                 else{
                     $aux = array("nombre"=>$value->nombre,"apellido"=>$value->apellido,"dni"=>$value->dni);

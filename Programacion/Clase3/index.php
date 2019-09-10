@@ -1,5 +1,6 @@
 <?php
 include './Clases/guardar.php';
+include './Clases/guardarImagen.php';
 include './Clases/leer.php';
 include './Clases/modificar.php';
 include './Clases/borrar.php';
@@ -19,8 +20,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $nombre = $_POST['nombre'];
             $apellido = $_POST['apellido'];
             $dni = $_POST['dni'];
+                    
+            $imagen = $_FILES['img'];
+            $nombre = "Sergio";
+            $destino = "./fotos/";
 
-            $aux = array("nombre"=>$nombre,"apellido"=>$apellido,"dni"=>$dni);
+            $nombreImagen = guardarImagen::guardar($imagen, $nombre, $destino);
+
+            $aux = array("nombre"=>$nombre,"apellido"=>$apellido,"dni"=>$dni, "nombreImagen"=>$nombreImagen);
             Guardar::guardarArchivo($archivo, $aux);
             break;
         }
