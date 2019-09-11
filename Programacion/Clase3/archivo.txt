@@ -1,1 +1,1 @@
-{"nombre":"Sergio","apellido":"Carbone","dni":"111111111","ruta":"Sergio.jpg"}
+{"nombre":"Sergio","apellido":"Carbone","dni":"111111111","nombreImagen":"111111111.jpg"}

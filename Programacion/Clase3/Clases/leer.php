@@ -21,6 +21,8 @@ class Leer{
             if($value != NULL){
              echo "Nombre: $value->nombre<br>"; 
              echo "Apellido: $value->apellido<br>";
+             echo "Dni: $value->dni<br>";
+             echo "Imagen: $value->nombreImagen<br>";
              echo "<br>";
             }
         }
