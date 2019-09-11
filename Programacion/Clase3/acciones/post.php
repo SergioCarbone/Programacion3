@@ -33,20 +33,30 @@ class Post{
 
     
     public static function modificarArchivo($archivo, $dni, $nuevaPersona){
-        $lista = Leer::leerArchivo($archivo);
+        $lista = Get::leerArchivo($archivo);
         
         unlink($archivo);
         
         foreach ($lista as $value) {
 
             if($value != null){
-                if($value->dni == $dni){                    
-                    Post::guardarArchivo($archivo, $nuevaPersona);
-                    echo "Se modifico correctamente";
+                if($value->dni == $dni){
+
+                    if($value->nombreImagen == $nuevaPersona['nombreImagen']){
+                        $imagen = "./fotos/".$value->nombreImagen;
+                        var_dump($imagen);
+                        $destino = "./fotos/backUp/".$value->nombreImagen;
+
+                        copy($imagen,$destino);
+                        
+                    }
+                    else{
+                        Post::guardarArchivo($archivo, $nuevaPersona);
+                        echo "Se modifico correctamente";
+                    }
                 }
                 else{
-                    $aux = array("nombre"=>$value->nombre,"apellido"=>$value->apellido,"dni"=>$value->dni);
-                    Post::guardarArchivo($archivo, $aux);
+                    Post::guardarArchivo($archivo, $value);
                 }
             }
         }
@@ -63,7 +73,7 @@ class Post{
 
         $foto = $nombre.'.'.$ext[0];
 
-        move_uploaded_file($origen,"./fotos/".$foto);
+        move_uploaded_file($origen,$destino.$foto);
 
         return $foto;
     }
